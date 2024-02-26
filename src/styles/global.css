@@ -68,13 +68,14 @@ ul {
   --modal-overlay: rgba(122, 122, 204, 0.3);
   --primary-shadow: hsl(240, 100%, 50%, 0.5);
   --secondary-shadow: hsl(240, 100%, 50%, 0.5);
-  --text-color: hsl(215, 100%, 5%);
   --title-color: hsl(215, 100%, 100%);
-  --paragraph-color: hsl(215, 100%, 50%);
-  --footer-text: hsl(215, 100%, 15%);
   --primero: hsl(215, 100%, 95%);
-  --segundo: hsl(215, 100%, 25%);
+  --cuarto: hsl(215, 100%, 85%);
   --tercero: hsl(215, 100%, 75%);
+  --paragraph-color: hsl(215, 100%, 50%);
+  --segundo: hsl(215, 100%, 25%);
+  --footer-text: hsl(215, 100%, 15%);
+  --text-color: hsl(215, 100%, 5%);
 }
 
 body {
