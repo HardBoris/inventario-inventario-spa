@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { BGbutton } from "../../components/BGbutton";
 import BGmodal from "../../components/BGmodal";
+import { BGinput } from "../../components/BG Input";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
@@ -10,7 +11,7 @@ interface MoveProps {
 export const Movements = ({ setTitulo }: MoveProps) => {
   useEffect(() => {
     setTitulo("Movimientos");
-  }, []);
+  });
 
   const [isNew, setIsNew] = useState(false);
 
@@ -18,7 +19,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
     setIsNew(!isNew);
   };
 
-  const titulos = [
+  /* const titulos = [
     "data",
     "referência",
     "Movimento",
@@ -29,7 +30,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
     "Unidade",
     "Responsável",
     "Observações",
-  ];
+  ]; */
 
   const movimientos = [
     {
@@ -103,7 +104,9 @@ export const Movements = ({ setTitulo }: MoveProps) => {
             <div key={index} className="fila">
               <div className="row_title">
                 {llaves.map((item, index) => (
-                  <div className="title_item">{item}:</div>
+                  <div key={index} className="title_item">
+                    {item}:
+                  </div>
                 ))}
               </div>
               <div className="row_data">
@@ -131,7 +134,51 @@ export const Movements = ({ setTitulo }: MoveProps) => {
         </div>
       </div>
       <BGmodal isOpen={isNew} setIsOpen={handleNew}>
-        <div>hola</div>
+        <div>
+          <div className="fields">
+            <div className="field-30">
+              <BGinput name="data" placeholder="dd/mm/aaaa" label="Data" />
+            </div>
+            <div className="field-30">
+              <BGinput
+                name="referencia"
+                placeholder="Número do documento"
+                label="Referência"
+              />
+            </div>
+            <div className="field-30">
+              <BGinput
+                name="movimento"
+                placeholder="Entrada ou Saída"
+                label="Movimento"
+              />
+            </div>
+          </div>
+          <div className="field-90">
+            <BGinput name="item" placeholder="Descrição do item" label="Item" />
+          </div>
+          <div className="fields">
+            <div className="field-30">
+              <BGinput
+                name="quantidade"
+                placeholder="Somente números"
+                label="Quantidade"
+              />
+            </div>
+            <div className="field-30">
+              <BGinput
+                name="unidade"
+                placeholder="Unidade de medida"
+                label="Unidade"
+              />
+            </div>
+            <div className="field-30">
+              {/* <div className="action"> */}
+              <BGbutton>Enviar</BGbutton>
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
       </BGmodal>
     </div>
   );
