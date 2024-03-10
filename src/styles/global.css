@@ -68,6 +68,7 @@ ul {
   --modal-overlay: rgba(122, 122, 204, 0.3);
   --primary-shadow: hsl(240, 100%, 50%, 0.5);
   --secondary-shadow: hsl(240, 100%, 50%, 0.5);
+  --primero-shadow: hsl(215, 100%, 25%, 0.5);
   --title-color: hsl(215, 100%, 100%);
   --primero: hsl(215, 100%, 95%);
   --cuarto: hsl(215, 100%, 85%);

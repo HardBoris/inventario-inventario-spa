@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { BGbutton } from "../../components/BGbutton";
+import BGmodal from "../../components/BGmodal";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
@@ -10,6 +11,12 @@ export const Movements = ({ setTitulo }: MoveProps) => {
   useEffect(() => {
     setTitulo("Movimientos");
   }, []);
+
+  const [isNew, setIsNew] = useState(false);
+
+  const handleNew = () => {
+    setIsNew(!isNew);
+  };
 
   const titulos = [
     "data",
@@ -67,20 +74,11 @@ export const Movements = ({ setTitulo }: MoveProps) => {
 
   return (
     <div className="movements">
-      {/* <header>
-        <h1>Movimentos</h1>
-      </header> */}
-      {/* <main> */}
       <div className="action">
-        <BGbutton>nuevo</BGbutton>
+        <BGbutton onClick={handleNew}>nuevo</BGbutton>
       </div>
       <div className="tabla">
         <div className="encabezado_tabla">
-          {/* {llaves.map((item, index) => (
-              <div key={index} className="titulo_tabla">
-                {item}
-              </div>
-            ))} */}
           <div className="titulo_tabla">
             <div className="item_data">{llaves[0]}</div>
           </div>
@@ -101,22 +99,11 @@ export const Movements = ({ setTitulo }: MoveProps) => {
           </div>
         </div>
         <div className="cuerpo_tabla">
-          {/* <div className="fila">
-              {titulos.map((item, index) => (
-                <div key={index} className="caja">
-                  <div className="titulo_caja">{item}:</div>
-                  <div className="cuerpo_caja">cuerpo</div>
-                </div>
-              ))}
-            </div> */}
-          {/* <div> */}
           {movimientos.map((item, index) => (
             <div key={index} className="fila">
               <div className="row_title">
                 {llaves.map((item, index) => (
-                  // <div key={index} className="caja">
                   <div className="title_item">{item}:</div>
-                  // </div>
                 ))}
               </div>
               <div className="row_data">
@@ -129,8 +116,6 @@ export const Movements = ({ setTitulo }: MoveProps) => {
                 <div className="data_item">
                   <div className="item_movimiento">{item.movimento}</div>
                 </div>
-                {/* <div className="data_item">{item.código}</div> */}
-                {/* <div className="data_item">{item.categoria}</div> */}
                 <div className="data_item">
                   <div className="item_item">{item.item}</div>
                 </div>
@@ -140,18 +125,14 @@ export const Movements = ({ setTitulo }: MoveProps) => {
                 <div className="data_item">
                   <div className="item_unidade">{item.unidade}</div>
                 </div>
-                {/* <div className="data_item">{item.responsável}</div> */}
-                {/* <div className="data_item">{item.observações}</div> */}
               </div>
             </div>
           ))}
-          {/* </div> */}
         </div>
       </div>
-      {/* </main> */}
-      {/* <footer>
-        <h3>pie de pagina</h3>
-      </footer> */}
+      <BGmodal isOpen={isNew} setIsOpen={handleNew}>
+        <div>hola</div>
+      </BGmodal>
     </div>
   );
 };
