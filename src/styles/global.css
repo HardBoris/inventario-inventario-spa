@@ -90,3 +90,19 @@ body {
   border: none;
   background: var(--primero);
 }
+
+@media (min-width: 426px) {
+  body {
+    font-size: calc(10px + 1.3vmin);
+  }
+
+  /* #root {
+    background-color: var(--primary);
+  } */
+}
+
+@media (min-width: 769px) {
+  body {
+    font-size: calc(10px + 1vmin);
+  }
+}

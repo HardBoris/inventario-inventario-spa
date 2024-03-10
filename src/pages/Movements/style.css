@@ -1,0 +1,44 @@
+.item_data,
+.item_referencia,
+.item_movimiento,
+.item_item,
+.item_quantidade,
+.item_unidade {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+@media (min-width: 769px) {
+  .item_data {
+    width: 15vw;
+    justify-content: center;
+  }
+
+  .item_referencia {
+    width: 10vw;
+    justify-content: center;
+  }
+
+  .item_movimiento {
+    width: 15vw;
+    justify-content: center;
+  }
+
+  .item_item {
+    width: 36vw;
+    justify-content: center;
+  }
+
+  .item_quantidade {
+    width: 10vw;
+    justify-content: center;
+  }
+
+  .item_unidade {
+    width: 10vw;
+    justify-content: center;
+  }
+}
