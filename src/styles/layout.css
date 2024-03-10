@@ -94,6 +94,11 @@ footer {
   border-bottom: solid 1px var(--tercero);
 }
 
+.action {
+  width: 200px;
+  margin: 25px auto;
+}
+
 @media (min-width: 426px) {
   /* header {
     font-size: 1rem;
@@ -156,5 +161,9 @@ footer {
     height: 40px;
     padding-left: 0;
     border-bottom: none;
+  }
+
+  .action {
+    margin: 2rem;
   }
 }

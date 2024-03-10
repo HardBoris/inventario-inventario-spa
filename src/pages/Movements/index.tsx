@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./style.css";
+import { BGbutton } from "../../components/BGbutton";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
@@ -70,7 +71,9 @@ export const Movements = ({ setTitulo }: MoveProps) => {
         <h1>Movimentos</h1>
       </header> */}
       {/* <main> */}
-      <button>nuevo</button>
+      <div className="action">
+        <BGbutton>nuevo</BGbutton>
+      </div>
       <div className="tabla">
         <div className="encabezado_tabla">
           {/* {llaves.map((item, index) => (
