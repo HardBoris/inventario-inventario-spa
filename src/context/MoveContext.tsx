@@ -16,11 +16,13 @@ interface MoveProviderProps {
 
 export interface Movement {
   moveId?: string;
-  moveType?: string;
-  moveElement: string;
+  moveData?: string;
+  reference?: string;
+  move: string;
+  item: string;
   elementType: string;
-  moveQuantity: number;
-  moveUnit: string;
+  quantity: number;
+  unit: string;
   // requisition?: Requisicion;
   // entry?: Entry;
 }
