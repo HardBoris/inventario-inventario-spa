@@ -1,10 +1,13 @@
 import { ReactNode } from "react";
 import { MoveProvider } from "./MoveContext";
+import { ItemProvider } from "./ItemContext";
 
 interface AppProviderProps {
   children: ReactNode;
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  <MoveProvider>{children}</MoveProvider>;
+  <ItemProvider>
+    <MoveProvider>{children}</MoveProvider>
+  </ItemProvider>;
 };

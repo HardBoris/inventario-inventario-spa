@@ -9,11 +9,11 @@ interface MoveProps {
 }
 
 export const Movements = ({ setTitulo }: MoveProps) => {
+  const [isNew, setIsNew] = useState(false);
+
   useEffect(() => {
     setTitulo("Movimientos");
   });
-
-  const [isNew, setIsNew] = useState(false);
 
   const handleNew = () => {
     setIsNew(!isNew);
@@ -41,7 +41,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
       // categoria: "midia",
       item: "adesivo pid blackout brilho",
       quantidade: 2,
-      unidade: "bovina",
+      unidade: "bobina",
       // responsável: "Boris",
       // observações: "sin observaciones",
     },
@@ -53,7 +53,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
       // categoria: "midia",
       item: "adesivo pid blackout brilho",
       quantidade: 2,
-      unidade: "bovina",
+      unidade: "bobina",
       // responsável: "Boris",
       // observações: "sin observaciones",
     },
@@ -65,7 +65,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
       // categoria: "midia",
       item: "adesivo pid blackout brilho",
       quantidade: 2,
-      unidade: "bovina",
+      unidade: "bobina",
       // responsável: "Boris",
       // observações: "sin observaciones",
     },
@@ -158,21 +158,21 @@ export const Movements = ({ setTitulo }: MoveProps) => {
             <BGinput name="item" placeholder="Descrição do item" label="Item" />
           </div>
           <div className="fields">
-            <div className="field-30 outro">
+            <div className="field-30 outro-input">
               <BGinput
                 name="quantidade"
                 placeholder="Somente números"
                 label="Quantidade"
               />
             </div>
-            <div className="field-30 outro">
+            <div className="field-30 outro-input">
               <BGinput
                 name="unidade"
                 placeholder="Unidade de medida"
                 label="Unidade"
               />
             </div>
-            <div className="field-30 outro">
+            <div className="field-30 outro-btn">
               {/* <div className="action"> */}
               <BGbutton>Enviar</BGbutton>
               {/* </div> */}

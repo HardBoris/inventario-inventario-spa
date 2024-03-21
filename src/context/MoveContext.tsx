@@ -20,11 +20,8 @@ export interface Movement {
   reference?: string;
   move: string;
   item: string;
-  elementType: string;
   quantity: number;
   unit: string;
-  // requisition?: Requisicion;
-  // entry?: Entry;
 }
 
 interface MoveContextData {

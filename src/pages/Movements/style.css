@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.outro-btn {
+  margin-top: 40px;
+}
+
 @media (min-width: 769px) {
   .item_data {
     width: 15vw;
@@ -42,19 +46,20 @@
     justify-content: center;
   }
 
-  .outro {
+  .outro-btn,
+  .outro-input {
     display: flex;
     justify-content: center;
     align-items: flex-end;
   }
 
-  .outro .btn {
+  .outro-btn .btn {
     display: flex;
     justify-content: center;
     align-items: flex-end;
   }
 
-  .outro .input-field {
+  .outro-input .input-field {
     display: flex;
     justify-content: center;
     align-items: flex-end;
