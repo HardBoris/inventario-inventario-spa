@@ -79,7 +79,7 @@ const ItemProvider = ({ children }: ItemProviderProps) => {
   const ItemList = async () => {
     await api
       .get(
-        `/elements` /* {
+        "/items" /* {
         headers: { authorization: `Bearer ${token}` },
       } */
       )

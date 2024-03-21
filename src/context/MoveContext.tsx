@@ -49,7 +49,7 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
 
   const MovementsList = async () => {
     await api
-      .get("/movements")
+      .get("/moves")
       .then((response) => {
         setMovimientos(response.data);
       })
@@ -64,33 +64,33 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
 
   const NewMovement = async (data: Movement) => {
     await api
-      .post("/movements/register", data)
+      .post("/moves/register", data)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 
   const ReqMove = async (id: string) => {
     await api
-      .get(`/movements/${id}`)
+      .get(`/moves/${id}`)
       .then((response) => console.log(response.data));
   };
 
   const moveByReq = async (requestId: string) => {
     await api
-      .get(`/movements/req/${requestId}`)
+      .get(`/moves/req/${requestId}`)
       .then((response) => setRequest(response.data));
   };
 
   const moveEditor = async (data: Movement) => {
     await api
-      .patch(`/movements/${data.moveId}`, data)
+      .patch(`/moves/${data.moveId}`, data)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
 
   const moveDeletor = async (id: string) => {
     await api
-      .delete(`/movements/${id}`)
+      .delete(`/moves/${id}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
