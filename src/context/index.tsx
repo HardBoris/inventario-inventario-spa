@@ -6,8 +6,8 @@ interface AppProviderProps {
   children: ReactNode;
 }
 
-export const AppProvider = ({ children }: AppProviderProps) => {
+export const AppProvider = ({ children }: AppProviderProps) => (
   <ItemProvider>
     <MoveProvider>{children}</MoveProvider>
-  </ItemProvider>;
-};
+  </ItemProvider>
+);

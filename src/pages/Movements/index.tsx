@@ -3,21 +3,32 @@ import "./style.css";
 import { BGbutton } from "../../components/BGbutton";
 import BGmodal from "../../components/BGmodal";
 import { BGinput } from "../../components/BG Input";
+import { MyItem, useItem } from "../../context/ItemContext";
+import { useMove } from "../../context/MoveContext";
+import { BGSelect } from "../../components/BGSelect";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
 }
 
 export const Movements = ({ setTitulo }: MoveProps) => {
+  const { stock } = useItem();
+  const { MovementsList, movimientos } = useMove();
+
   const [isNew, setIsNew] = useState(false);
+  const [itemList, setItemList] = useState<MyItem[]>([]);
+  const [moves, setMoves] = useState([]);
 
   useEffect(() => {
     setTitulo("Movimientos");
+    setItemList(stock);
   });
 
   const handleNew = () => {
     setIsNew(!isNew);
   };
+
+  console.log(itemList);
 
   /* const titulos = [
     "data",
@@ -32,7 +43,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
     "Observações",
   ]; */
 
-  const movimientos = [
+  const movimentos = [
     {
       data: "25/02/24",
       referência: "2568",
@@ -71,7 +82,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
     },
   ];
 
-  const llaves = Object.keys(movimientos[0]);
+  const llaves = Object.keys(movimentos[0]);
 
   return (
     <div className="movements">
@@ -100,7 +111,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
           </div>
         </div>
         <div className="cuerpo_tabla">
-          {movimientos.map((item, index) => (
+          {movimentos.map((item, index) => (
             <div key={index} className="fila">
               <div className="row_title">
                 {llaves.map((item, index) => (
@@ -155,7 +166,15 @@ export const Movements = ({ setTitulo }: MoveProps) => {
             </div>
           </div>
           <div className="field-100">
-            <BGinput name="item" placeholder="Descrição do item" label="Item" />
+            {/* <BGinput name="item" placeholder="Descrição do item" label="Item" /> */}
+            <BGSelect name="item" label="Item">
+              {itemList &&
+                itemList.map((item, index) => (
+                  <option key={index} value={item.itemId}>
+                    {item.item}
+                  </option>
+                ))}
+            </BGSelect>
           </div>
           <div className="fields">
             <div className="field-30 outro-input">
