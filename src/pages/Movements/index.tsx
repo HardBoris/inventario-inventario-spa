@@ -154,25 +154,25 @@ export const Movements = ({ setTitulo }: MoveProps) => {
               />
             </div>
           </div>
-          <div className="field-90">
+          <div className="field-100">
             <BGinput name="item" placeholder="Descrição do item" label="Item" />
           </div>
           <div className="fields">
-            <div className="field-30">
+            <div className="field-30 outro">
               <BGinput
                 name="quantidade"
                 placeholder="Somente números"
                 label="Quantidade"
               />
             </div>
-            <div className="field-30">
+            <div className="field-30 outro">
               <BGinput
                 name="unidade"
                 placeholder="Unidade de medida"
                 label="Unidade"
               />
             </div>
-            <div className="field-30">
+            <div className="field-30 outro">
               {/* <div className="action"> */}
               <BGbutton>Enviar</BGbutton>
               {/* </div> */}

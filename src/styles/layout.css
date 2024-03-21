@@ -117,6 +117,7 @@ footer {
 .field-60,
 .field-75,
 .field-90,
+.field-100,
 .wrap-10,
 .wrap-20,
 .wrap-25,
@@ -218,7 +219,8 @@ footer {
   .field-50,
   .field-60,
   .field-75,
-  .field-90 {
+  .field-90,
+  .field-100 {
     height: 100%;
     flex-direction: row;
   }
@@ -245,7 +247,7 @@ footer {
 
   .field-30,
   .wrap-30 {
-    border: solid 1px red;
+    /* border: solid 1px red; */
     width: 30%;
   }
 
@@ -277,6 +279,11 @@ footer {
   .field-90,
   .wrap-90 {
     width: 90%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
+  }
+
+  .field-100 {
+    width: 100%;
+    /* border: solid 1px red; */
   }
 }
