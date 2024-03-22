@@ -168,6 +168,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
           <div className="field-100">
             {/* <BGinput name="item" placeholder="Descrição do item" label="Item" /> */}
             <BGSelect name="item" label="Item">
+              <option>Selecione um item</option>
               {itemList &&
                 itemList.map((item, index) => (
                   <option key={index} value={item.itemId}>

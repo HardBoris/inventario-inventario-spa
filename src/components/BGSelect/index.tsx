@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes } from "react";
-import "./select.style.css";
+import "./style.css";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLInputElement> {
   register?: any;
