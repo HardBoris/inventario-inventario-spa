@@ -99,8 +99,7 @@ export const Movements = ({ setTitulo }: MoveProps) => {
   return (
     <div className="movements">
       <div className="action">
-        <BGbutton onClick={NewEntry}>Entrada</BGbutton>
-        <BGbutton onClick={NewEntry}>Saída</BGbutton>
+        <BGbutton onClick={NewEntry}>Novo Movimento</BGbutton>
       </div>
       <div className="tabla">
         <div className="encabezado_tabla">

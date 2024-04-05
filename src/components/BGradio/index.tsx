@@ -17,9 +17,9 @@ export const BGradio = ({
   ...rest
 }: InputProps) => {
   return (
-    <div className="input-form">
-      {label && <div className="input-label">{label}</div>}
-      <div className={!!error ? "input-field borded" : "input-field"}>
+    <div className="radio-form">
+      {label && <div className="radio-label">{label}</div>}
+      <div className={!!error ? "radio-field borded" : "radio-field"}>
         <input
           {...(register && { ...register(name) })}
           {...rest}

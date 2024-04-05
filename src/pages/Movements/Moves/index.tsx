@@ -4,7 +4,7 @@ import { BGSelect } from "../../../components/BGSelect";
 import { BGbutton } from "../../../components/BGbutton";
 import { BGradio } from "../../../components/BGradio";
 import { useForm } from "react-hook-form";
-import { Movement } from "../../../context/MoveContext";
+// import { Movement } from "../../../context/MoveContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { MyItem } from "../../../context/ItemContext";
@@ -71,6 +71,7 @@ export const NewMove = ({ itemList }: NewMoveProps) => {
           />
         </div>
         <div className="field-30">
+          {/* <div className="radio-move"> */}
           <BGradio
             id="entrada"
             name="move"
@@ -91,6 +92,7 @@ export const NewMove = ({ itemList }: NewMoveProps) => {
             onChange={handleChange}
             error={errors.move?.message}
           />
+          {/* </div> */}
         </div>
       </div>
       <div className="field-100">
