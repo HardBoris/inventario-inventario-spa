@@ -2,33 +2,45 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { BGbutton } from "../../components/BGbutton";
 import BGmodal from "../../components/BGmodal";
-import { BGinput } from "../../components/BG Input";
+// import { BGinput } from "../../components/BG Input";
 import { MyItem, useItem } from "../../context/ItemContext";
-import { useMove } from "../../context/MoveContext";
-import { BGSelect } from "../../components/BGSelect";
+import { NewMove } from "./Moves";
+// import { Movement } from "../../context/MoveContext";
+// import { BGSelect } from "../../components/BGSelect";
+// import { BGradio } from "../../components/BGradio";
+// import { Entries, NewMove } from "./Moves";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
 }
 
+interface moveInfo {
+  moveData?: string;
+  reference?: string;
+  move: string;
+  item: string;
+  quantity: number;
+  unit: string;
+}
+
 export const Movements = ({ setTitulo }: MoveProps) => {
   const { stock } = useItem();
-  const { MovementsList, movimientos } = useMove();
+  // const { MovementsList, movimientos } = useMove();
 
   const [isNew, setIsNew] = useState(false);
   const [itemList, setItemList] = useState<MyItem[]>([]);
-  const [moves, setMoves] = useState([]);
+  // const [moves, setMoves] = useState([]);
 
   useEffect(() => {
     setTitulo("Movimientos");
     setItemList(stock);
   });
 
-  const handleNew = () => {
+  const NewEntry = () => {
     setIsNew(!isNew);
   };
 
-  console.log(itemList);
+  // console.log(itemList);
 
   /* const titulos = [
     "data",
@@ -87,7 +99,8 @@ export const Movements = ({ setTitulo }: MoveProps) => {
   return (
     <div className="movements">
       <div className="action">
-        <BGbutton onClick={handleNew}>nuevo</BGbutton>
+        <BGbutton onClick={NewEntry}>Entrada</BGbutton>
+        <BGbutton onClick={NewEntry}>Saída</BGbutton>
       </div>
       <div className="tabla">
         <div className="encabezado_tabla">
@@ -144,8 +157,8 @@ export const Movements = ({ setTitulo }: MoveProps) => {
           ))}
         </div>
       </div>
-      <BGmodal isOpen={isNew} setIsOpen={handleNew}>
-        <div>
+      <BGmodal isOpen={isNew} setIsOpen={NewEntry}>
+        {/* <div>
           <div className="fields">
             <div className="field-30">
               <BGinput name="data" placeholder="dd/mm/aaaa" label="Data" />
@@ -158,15 +171,21 @@ export const Movements = ({ setTitulo }: MoveProps) => {
               />
             </div>
             <div className="field-30">
-              <BGinput
+              <BGradio
+                id="entrada"
                 name="movimento"
-                placeholder="Entrada ou Saída"
-                label="Movimento"
+                value="entrada"
+                label="Entrada"
+              />
+              <BGradio
+                id="saida"
+                name="movimento"
+                value="saída"
+                label="Saída"
               />
             </div>
           </div>
           <div className="field-100">
-            {/* <BGinput name="item" placeholder="Descrição do item" label="Item" /> */}
             <BGSelect name="item" label="Item">
               <option>Selecione um item</option>
               {itemList &&
@@ -193,12 +212,11 @@ export const Movements = ({ setTitulo }: MoveProps) => {
               />
             </div>
             <div className="field-30 outro-btn">
-              {/* <div className="action"> */}
               <BGbutton>Enviar</BGbutton>
-              {/* </div> */}
             </div>
           </div>
-        </div>
+        </div> */}
+        <NewMove itemList={itemList} />
       </BGmodal>
     </div>
   );

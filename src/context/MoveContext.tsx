@@ -44,7 +44,7 @@ const useMove = () => useContext(MoveContext);
 const MoveProvider = ({ children }: MoveProviderProps) => {
   // const { company } = useAuth();
   const [movimientos, setMovimientos] = useState<Movement[]>([]);
-  const [movida, setMovida] = useState<Movement>({} as Movement);
+  // const [movida, setMovida] = useState<Movement>({} as Movement);
   const [request, setRequest] = useState<Movement[]>([]);
 
   const MovementsList = async () => {

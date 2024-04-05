@@ -60,7 +60,7 @@ export interface Tool {
 }
 
 interface ItemContextData {
-  item: MyItem;
+  // item: MyItem;
   stock: MyItem[];
   ItemList: () => void;
 }
@@ -74,7 +74,7 @@ const useItem = () => useContext(ItemContext);
 const ItemProvider = ({ children }: ItemProviderProps) => {
   // const { company, token } = useAuth();
   const [stock, setStock] = useState<MyItem[]>([]);
-  const [item, setItem] = useState<MyItem>({} as MyItem);
+  // const [item, setItem] = useState<MyItem>({} as MyItem);
 
   const ItemList = async () => {
     await api
@@ -106,7 +106,7 @@ const ItemProvider = ({ children }: ItemProviderProps) => {
   return (
     <ItemContext.Provider
       value={{
-        item,
+        // item,
         stock,
         ItemList,
       }}
