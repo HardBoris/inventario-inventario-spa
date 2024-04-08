@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { localApi as api } from "../services/api";
+import { MyItem } from "./ItemContext";
 // import { Requisicion } from "./RequisitionContext";
 // import { Entry } from "./EntryContext";
 // import { useAuth } from "./UserContext";
@@ -16,8 +17,17 @@ interface MoveProviderProps {
 
 export interface Movement {
   moveId?: string;
-  moveData?: string;
-  reference?: string;
+  moveData: string;
+  reference: string;
+  move: string;
+  item: MyItem;
+  quantity: number;
+  unit: string;
+}
+
+export interface moveInfo {
+  moveData: string;
+  reference: string;
   move: string;
   item: string;
   quantity: number;
@@ -27,9 +37,13 @@ export interface Movement {
 interface MoveContextData {
   movimientos: Movement[];
   request: Movement[];
+  historico: Movement[];
+  referencia: Movement[];
   MovementsList: () => void;
-  NewMovement: (data: Movement) => void;
+  NewMovement: (data: moveInfo) => void;
   ReqMove: (doc: string) => void;
+  History: (itemId: string) => void;
+  Reference: (reference: string) => void;
   moveByReq: (requestId: string) => void;
   moveEditor: (data: Movement) => void;
   moveDeletor: (id: string) => void;
@@ -46,12 +60,14 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
   const [movimientos, setMovimientos] = useState<Movement[]>([]);
   // const [movida, setMovida] = useState<Movement>({} as Movement);
   const [request, setRequest] = useState<Movement[]>([]);
+  const [historico, setHistorico] = useState<Movement[]>([]);
+  const [referencia, setReferencia] = useState<Movement[]>([]);
 
   const MovementsList = async () => {
     await api
       .get("/moves")
       .then((response) => {
-        setMovimientos(response.data);
+        setMovimientos(response.data.reverse());
       })
       .catch((error) => {
         console.log(error);
@@ -62,7 +78,7 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
     MovementsList();
   }, []);
 
-  const NewMovement = async (data: Movement) => {
+  const NewMovement = async (data: moveInfo) => {
     await api
       .post("/moves/register", data)
       .then((response) => console.log(response.data))
@@ -73,6 +89,21 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
     await api
       .get(`/moves/${id}`)
       .then((response) => console.log(response.data));
+  };
+
+  /* funcion para buscar el historico de un item */
+  const History = async (itemId: string) => {
+    await api
+      .get(`/moves/history/${itemId}`)
+      .then((response) => setHistorico(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  const Reference = async (reference: string) => {
+    await api
+      .get(`/moves/reference/${reference}`)
+      .then((response) => setReferencia(response.data))
+      .catch((error) => console.log(error));
   };
 
   const moveByReq = async (requestId: string) => {
@@ -100,9 +131,13 @@ const MoveProvider = ({ children }: MoveProviderProps) => {
       value={{
         movimientos,
         request,
+        historico,
+        referencia,
         MovementsList,
         NewMovement,
         ReqMove,
+        History,
+        Reference,
         moveByReq,
         moveEditor,
         moveDeletor,
