@@ -19,8 +19,9 @@ main {
   color: var(--primary-darker);
   overflow: auto;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 footer {

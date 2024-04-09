@@ -1,6 +1,6 @@
 .item_data,
-.item_referencia,
-.item_movimiento,
+.item_referência,
+.item_movimento,
 .item_item,
 .item_quantidade,
 .item_unidade {
@@ -21,12 +21,12 @@
     justify-content: center;
   }
 
-  .item_referencia {
+  .item_referência {
     width: 10vw;
     justify-content: center;
   }
 
-  .item_movimiento {
+  .item_movimento {
     width: 15vw;
     justify-content: center;
   }

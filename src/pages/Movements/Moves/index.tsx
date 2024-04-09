@@ -4,10 +4,11 @@ import { BGSelect } from "../../../components/BGSelect";
 import { BGbutton } from "../../../components/BGbutton";
 import { BGradio } from "../../../components/BGradio";
 import { useForm } from "react-hook-form";
-// import { Movement } from "../../../context/MoveContext";
+import { moveInfo } from "../../../context/MoveContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { MyItem } from "../../../context/ItemContext";
+import { useMove } from "../../../context/MoveContext";
 
 const MoveSchema = yup.object().shape({
   moveData: yup.string().required(),
@@ -18,20 +19,14 @@ const MoveSchema = yup.object().shape({
   unit: yup.string().required(),
 });
 
-interface moveInfo {
-  moveData: string;
-  reference: string;
-  move: string;
-  item: string;
-  quantity: number;
-  unit: string;
-}
-
 interface NewMoveProps {
   itemList: MyItem[];
+  close: () => void;
 }
 
-export const NewMove = ({ itemList }: NewMoveProps) => {
+export const NewMove = ({ itemList, close }: NewMoveProps) => {
+  const { NewMovement } = useMove();
+
   const [moveType, setMoveType] = useState("");
   const handleChange = (e: any) => {
     setMoveType(e.target.value);
@@ -46,7 +41,9 @@ export const NewMove = ({ itemList }: NewMoveProps) => {
   });
 
   const envia = (data: moveInfo) => {
-    console.log(data);
+    // console.log(data);
+    NewMovement(data);
+    close();
   };
 
   return (

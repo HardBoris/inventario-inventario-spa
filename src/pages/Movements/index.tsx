@@ -2,60 +2,44 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { BGbutton } from "../../components/BGbutton";
 import BGmodal from "../../components/BGmodal";
-// import { BGinput } from "../../components/BG Input";
 import { MyItem, useItem } from "../../context/ItemContext";
 import { NewMove } from "./Moves";
-// import { Movement } from "../../context/MoveContext";
-// import { BGSelect } from "../../components/BGSelect";
-// import { BGradio } from "../../components/BGradio";
-// import { Entries, NewMove } from "./Moves";
+import { Movement, useMove } from "../../context/MoveContext";
+import { ItemHistory } from "../History";
+import { BGtableHead } from "../../components/BGtableHead";
 
 interface MoveProps {
   setTitulo: (titulo: string) => void;
 }
 
-interface moveInfo {
-  moveData?: string;
-  reference?: string;
-  move: string;
-  item: string;
-  quantity: number;
-  unit: string;
-}
-
-export const Movements = ({ setTitulo }: MoveProps) => {
+export const Movements = () => {
   const { stock } = useItem();
-  // const { MovementsList, movimientos } = useMove();
+  const { MovementsList, movimientos } = useMove();
 
   const [isNew, setIsNew] = useState(false);
+  const [openHistory, setOpenHistory] = useState(false);
   const [itemList, setItemList] = useState<MyItem[]>([]);
-  // const [moves, setMoves] = useState([]);
+  const [moves, setMoves] = useState<Movement[]>([]);
 
   useEffect(() => {
-    setTitulo("Movimientos");
     setItemList(stock);
-  });
+  }, [stock]);
 
   const NewEntry = () => {
     setIsNew(!isNew);
   };
 
-  // console.log(itemList);
+  const handleHistory = () => {
+    setOpenHistory(!openHistory);
+  };
 
-  /* const titulos = [
-    "data",
-    "referência",
-    "Movimento",
-    "Código",
-    "Categoria",
-    "Item",
-    "Quantidade",
-    "Unidade",
-    "Responsável",
-    "Observações",
-  ]; */
+  const filteredItem = (id: string) => {};
 
-  const movimentos = [
+  /* useEffect(() => {
+    MovementsList();
+  }, []); */
+
+  const movimentos_falsos = [
     {
       data: "25/02/24",
       referência: "2568",
@@ -94,23 +78,30 @@ export const Movements = ({ setTitulo }: MoveProps) => {
     },
   ];
 
-  const llaves = Object.keys(movimentos[0]);
+  const llaves = Object.keys(movimentos_falsos[0]);
+
+  // console.log(movimientos);
 
   return (
-    <div className="movements">
-      <div className="action">
-        <BGbutton onClick={NewEntry}>Novo Movimento</BGbutton>
-      </div>
-      <div className="tabla">
-        <div className="encabezado_tabla">
+    <>
+      <header>
+        <h1>Movimentos</h1>
+      </header>
+      <main className="movements">
+        <div className="action">
+          <BGbutton onClick={NewEntry}>Novo Movimento</BGbutton>
+        </div>
+        <div className="tabla">
+          <BGtableHead titulos={llaves} />
+          {/* <div className="encabezado_tabla">
           <div className="titulo_tabla">
             <div className="item_data">{llaves[0]}</div>
           </div>
           <div className="titulo_tabla">
-            <div className="item_referencia">{llaves[1]}</div>
+            <div className="item_referência">{llaves[1]}</div>
           </div>
           <div className="titulo_tabla">
-            <div className="item_movimiento">{llaves[2]}</div>
+            <div className="item_movimento">{llaves[2]}</div>
           </div>
           <div className="titulo_tabla">
             <div className="item_item">{llaves[3]}</div>
@@ -121,102 +112,51 @@ export const Movements = ({ setTitulo }: MoveProps) => {
           <div className="titulo_tabla">
             <div className="item_unidade">{llaves[5]}</div>
           </div>
-        </div>
-        <div className="cuerpo_tabla">
-          {movimentos.map((item, index) => (
-            <div key={index} className="fila">
-              <div className="row_title">
-                {llaves.map((item, index) => (
-                  <div key={index} className="title_item">
-                    {item}:
-                  </div>
-                ))}
-              </div>
-              <div className="row_data">
-                <div className="data_item">
-                  <div className="item_data">{item.data}</div>
-                </div>
-                <div className="data_item">
-                  <div className="item_referencia">{item.referência}</div>
-                </div>
-                <div className="data_item">
-                  <div className="item_movimiento">{item.movimento}</div>
-                </div>
-                <div className="data_item">
-                  <div className="item_item">{item.item}</div>
-                </div>
-                <div className="data_item">
-                  <div className="item_quantidade">{item.quantidade}</div>
-                </div>
-                <div className="data_item">
-                  <div className="item_unidade">{item.unidade}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <BGmodal isOpen={isNew} setIsOpen={NewEntry}>
-        {/* <div>
-          <div className="fields">
-            <div className="field-30">
-              <BGinput name="data" placeholder="dd/mm/aaaa" label="Data" />
-            </div>
-            <div className="field-30">
-              <BGinput
-                name="referencia"
-                placeholder="Número do documento"
-                label="Referência"
-              />
-            </div>
-            <div className="field-30">
-              <BGradio
-                id="entrada"
-                name="movimento"
-                value="entrada"
-                label="Entrada"
-              />
-              <BGradio
-                id="saida"
-                name="movimento"
-                value="saída"
-                label="Saída"
-              />
-            </div>
-          </div>
-          <div className="field-100">
-            <BGSelect name="item" label="Item">
-              <option>Selecione um item</option>
-              {itemList &&
-                itemList.map((item, index) => (
-                  <option key={index} value={item.itemId}>
-                    {item.item}
-                  </option>
-                ))}
-            </BGSelect>
-          </div>
-          <div className="fields">
-            <div className="field-30 outro-input">
-              <BGinput
-                name="quantidade"
-                placeholder="Somente números"
-                label="Quantidade"
-              />
-            </div>
-            <div className="field-30 outro-input">
-              <BGinput
-                name="unidade"
-                placeholder="Unidade de medida"
-                label="Unidade"
-              />
-            </div>
-            <div className="field-30 outro-btn">
-              <BGbutton>Enviar</BGbutton>
-            </div>
-          </div>
         </div> */}
-        <NewMove itemList={itemList} />
-      </BGmodal>
-    </div>
+          <div className="cuerpo_tabla">
+            {movimientos.map((item, index) => (
+              <div key={index} className="fila">
+                <div className="row_title">
+                  {llaves.map((item, index) => (
+                    <div key={index} className="title_item">
+                      {item}:
+                    </div>
+                  ))}
+                </div>
+                <div className="row_data">
+                  <div className="data_item">
+                    <div className="item_data">{item.moveData}</div>
+                  </div>
+                  <div className="data_item">
+                    <div className="item_referência">{item.reference}</div>
+                  </div>
+                  <div className="data_item">
+                    <div className="item_movimento">{item.move}</div>
+                  </div>
+                  <div className="data_item">
+                    <div className="item_item" onClick={() => handleHistory()}>
+                      {item.item.item}
+                    </div>
+                  </div>
+                  <div className="data_item">
+                    <div className="item_quantidade">{item.quantity}</div>
+                  </div>
+                  <div className="data_item">
+                    <div className="item_unidade">{item.unit}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <BGmodal isOpen={isNew} setIsOpen={NewEntry}>
+          <NewMove itemList={itemList} close={NewEntry} />
+        </BGmodal>
+        {/* <BGmodal isOpen={openHistory} setIsOpen={handleHistory}>
+        <ItemHistory />
+      </BGmodal> */}
+      </main>
+      <footer></footer>
+    </>
   );
 };
